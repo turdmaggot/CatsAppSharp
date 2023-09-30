@@ -18,5 +18,6 @@
   <ItemGroup>
     <PackageReference Include="Refit" Version="7.0.0" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="Square.Picasso" Version="2.71828.0" />
   </ItemGroup>
 </Project>
