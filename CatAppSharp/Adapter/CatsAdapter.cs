@@ -36,8 +36,12 @@ namespace CatAppSharp.Adapter
             if (holder is CatsViewHolder catsViewHolder)
             {
                 var layoutParams = catsViewHolder.ImgCat.LayoutParameters;
-                layoutParams.Width = cat.Width;
-                layoutParams.Height = cat.Height;
+                
+                if (layoutParams != null)
+                {
+                    layoutParams.Width = cat.Width;
+                    layoutParams.Height = cat.Height;
+                }
 
                 Picasso.Get().Load(cat.Url).Into(catsViewHolder.ImgCat);
             }
@@ -45,8 +49,12 @@ namespace CatAppSharp.Adapter
 
         public override RecyclerView.ViewHolder OnCreateViewHolder(ViewGroup parent, int viewType)
         {
-            var view = LayoutInflater.From(parent.Context).Inflate(Resource.Layout.cats_row, parent, false);
-            return new CatsViewHolder(view);
+            var view = LayoutInflater.From(parent.Context)?.Inflate(Resource.Layout.cats_row, parent, false);
+
+            if(view != null)
+                return new CatsViewHolder(view);
+
+            return null;
         }
 
         #endregion
@@ -64,7 +72,7 @@ namespace CatAppSharp.Adapter
 
         public CatsViewHolder(View itemView) : base(itemView)
         {
-            ImgCat = itemView.FindViewById<ImageView>(Resource.Id.imgCat);
+            ImgCat = itemView?.FindViewById<ImageView>(Resource.Id.imgCat);
         }
 
         #endregion
